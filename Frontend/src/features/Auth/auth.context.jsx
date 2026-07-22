@@ -9,9 +9,14 @@ export const AuthProvider = ({children}) => {
 
     useEffect(()=>{
         const getAndSetUser = async() => {
-            const data = await getme()
-            setUser(data.user)
-            setLoading(false)
+            try{
+                const data = await getme()
+                setUser(data.user)
+            }
+            catch(err){}
+            finally{
+                setLoading(false)
+            }
         }
 
         getAndSetUser()

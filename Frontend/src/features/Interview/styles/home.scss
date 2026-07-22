@@ -1,0 +1,461 @@
+$bg: #0a0b10;
+$card-bg: #14151d;
+$card-border: #24262f;
+$field-bg: #1b1d27;
+$text-primary: #f5f5f7;
+$text-muted: #8b8d98;
+$text-faint: #5c5e6b;
+
+$pink: #ec1373;
+$pink-soft: rgba(236, 19, 115, 0.14);
+$purple: #8b5cf6;
+
+$blue: #4d8bff;
+$blue-soft: rgba(77, 139, 255, 0.12);
+
+.home{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: $bg;
+    color: $text-primary;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    // ---------------------------------------------------------------
+    // Header
+    // ---------------------------------------------------------------
+    .page-header{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        text-align: center;
+
+        &__row{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        &__brand{
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        &__brand-icon{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $pink;
+        }
+
+        &__brand-name{
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: $pink;
+        }
+
+        &__title{
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin: 0;
+        }
+
+        &__title-accent{
+            color: $pink;
+        }
+
+        &__subtitle{
+            max-width: 34rem;
+            color: $text-muted;
+            font-size: 0.9rem;
+            line-height: 1.45;
+            margin: 0;
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Card shell
+    // ---------------------------------------------------------------
+    .plan-card{
+        width: 100%;
+        max-width: 50rem;
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        border: 1px solid $card-border;
+        border-radius: 1rem;
+        background: $card-bg;
+        overflow: hidden;
+
+        &__body{
+            flex: 1;
+            min-height: 0;
+            padding: 1.5rem;
+            display: flex;
+        }
+
+        &__divider{
+            position: relative;
+            width: 1px;
+            align-self: stretch;
+            background: $card-border;
+            flex-shrink: 0;
+
+            @media (max-width: 900px){
+                width: 100%;
+                height: 1px;
+                margin-block: 1.5rem;
+            }
+        }
+
+        &__divider-dot{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1.6rem;
+            height: 1.6rem;
+            border-radius: 999px;
+            border: 1px solid $card-border;
+            background: $field-bg;
+        }
+    }
+
+    .interview-input-group{
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        gap : 2rem;
+        height: 100%;
+
+        @media (max-width: 900px){
+            flex-direction: column;
+        }
+    }
+
+    .input-group:has(textarea){
+        flex: 1;
+        min-height: 0;
+        display: flex;
+    }
+
+    textarea{
+        height: 100%;
+        min-height: 0;
+        border: none;
+        outline: none;
+        padding-inline: 1rem;
+        padding-block: 0.75rem;
+        border-radius: 0.65rem;
+        width: 100%;
+        background-color: $field-bg;
+        color: $text-primary;
+        resize: none;
+        font-family: inherit;
+        font-size: 0.87rem;
+        line-height: 1.5;
+
+        &::placeholder{
+            color: $text-faint;
+        }
+
+        &:focus{
+            box-shadow: 0 0 0 1px rgba($pink, 0.4);
+        }
+    }
+
+    .left{
+        width: 50%;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        min-height: 0;
+
+        @media (max-width: 900px){
+            width: 100%;
+        }
+    }
+
+    .right{
+        display: flex;
+        justify-content: flex-start;
+        align-self: stretch;
+        width: 50%;
+        flex-direction: column;
+        gap : 0.6rem;
+        min-height: 0;
+
+        @media (max-width: 900px){
+            width: 100%;
+        }
+    }
+
+    .input-label{
+        padding: 0.75rem 1rem;
+        background-color: #e0ecff;
+        color: rgb(40, 39, 39);
+        font-weight: 500;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // ---------------------------------------------------------------
+    // Panels (job description / profile)
+    // ---------------------------------------------------------------
+    .panel{
+        &__header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &__title{
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin: 0;
+
+            svg{
+                color: $pink;
+            }
+        }
+    }
+
+    .badge{
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 0.2rem 0.55rem;
+        border-radius: 999px;
+
+        &--required{
+            color: $pink;
+            background: $pink-soft;
+        }
+    }
+
+    .highlight{
+        color: $pink;
+        font-weight: 500;
+    }
+
+    // ---------------------------------------------------------------
+    // Job description panel
+    // ---------------------------------------------------------------
+    .job-panel{
+        &__field{
+            position: relative;
+            flex: 1;
+            display: flex;
+        }
+
+        &__field textarea{
+            padding-bottom: 2.25rem;
+        }
+
+        &__char-count{
+            position: absolute;
+            right: 0.85rem;
+            bottom: 0.75rem;
+            font-size: 0.68rem;
+            color: $text-faint;
+            background: rgba(0, 0, 0, 0.35);
+            padding: 0.15rem 0.5rem;
+            border-radius: 0.35rem;
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Profile panel
+    // ---------------------------------------------------------------
+    .profile-panel{
+        &__label{
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: $text-primary;
+            margin: 0 0 0.6rem;
+        }
+
+        &__field textarea{
+            min-height: 5rem;
+        }
+
+        &__or{
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: $text-faint;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+
+            &::before,
+            &::after{
+                content: "";
+                flex: 1;
+                height: 1px;
+                background: $card-border;
+            }
+        }
+
+        .notice{
+            margin-top: auto;
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Upload box
+    // ---------------------------------------------------------------
+    .upload-box{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1.1rem 1rem;
+        border: 1.5px dashed $card-border;
+        border-radius: 0.75rem;
+        cursor: pointer;
+        transition: border-color 0.15s ease, background-color 0.15s ease;
+
+        &:hover,
+        &:focus-visible{
+            border-color: $pink;
+            background: rgba($pink, 0.04);
+            outline: none;
+        }
+
+        &__icon{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 999px;
+            background: $field-bg;
+            color: $pink;
+        }
+
+        &__title{
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0;
+
+            &--file{
+                color: $pink;
+                max-width: 90%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+
+        &__hint{
+            font-size: 0.72rem;
+            color: $text-faint;
+            margin: 0;
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Notice banner
+    // ---------------------------------------------------------------
+    .notice{
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+        padding: 0.75rem 0.9rem;
+        border-radius: 0.65rem;
+        background: $blue-soft;
+
+        &__icon{
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.2rem;
+            height: 1.2rem;
+            border-radius: 999px;
+            background: $blue;
+            color: $bg;
+            margin-top: 0.1rem;
+        }
+
+        &__text{
+            font-size: 0.78rem;
+            line-height: 1.5;
+            color: $text-muted;
+            margin: 0;
+
+            strong{
+                color: $text-primary;
+                font-weight: 700;
+            }
+        }
+    }
+
+    // ---------------------------------------------------------------
+    // Footer / generate bar
+    // ---------------------------------------------------------------
+    .generate-bar{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 1rem;
+        padding: 0.9rem 1.5rem;
+        border-top: 1px solid $card-border;
+        background: rgba(255, 255, 255, 0.015);
+        flex-wrap: wrap;
+    }
+
+    .button{
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+    }
+
+    .primary-button{
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.4rem;
+        border-radius: 0.65rem;
+        background: $pink;
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: 700;
+        transition: opacity 0.15s ease, transform 0.15s ease;
+
+        &:hover:not(:disabled){
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        &:disabled{
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+}
