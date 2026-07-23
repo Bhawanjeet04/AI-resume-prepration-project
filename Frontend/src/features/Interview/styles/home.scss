@@ -13,24 +13,21 @@ $purple: #8b5cf6;
 $blue: #4d8bff;
 $blue-soft: rgba(77, 139, 255, 0.12);
 
-.home{
+    .home{
     width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 1.25rem;
     padding: 1.25rem 1.5rem;
     background: $bg;
     color: $text-primary;
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    overflow: hidden;
+    overflow: auto;
     box-sizing: border-box;
 
-    // ---------------------------------------------------------------
-    // Header
-    // ---------------------------------------------------------------
     .page-header{
         display: flex;
         flex-direction: column;
@@ -86,27 +83,25 @@ $blue-soft: rgba(77, 139, 255, 0.12);
         }
     }
 
-    // ---------------------------------------------------------------
-    // Card shell
-    // ---------------------------------------------------------------
+
     .plan-card{
         width: 100%;
         max-width: 50rem;
-        flex: 1;
+        flex: none;
         min-height: 0;
         display: flex;
-        justify-content: space-between;
         flex-direction: column;
         border: 1px solid $card-border;
         border-radius: 1rem;
         background: $card-bg;
         overflow: hidden;
+        max-height: 80vh;
 
         &__body{
-            flex: 1;
-            min-height: 0;
             padding: 1.5rem;
             display: flex;
+            min-height: 0;
+            overflow: auto;
         }
 
         &__divider{
@@ -139,9 +134,9 @@ $blue-soft: rgba(77, 139, 255, 0.12);
     .interview-input-group{
         display: flex;
         justify-content: center;
-        align-items: stretch;
+        align-items: flex-start;
         gap : 2rem;
-        height: 100%;
+        height: auto;
 
         @media (max-width: 900px){
             flex-direction: column;
@@ -218,9 +213,7 @@ $blue-soft: rgba(77, 139, 255, 0.12);
         justify-content: center;
     }
 
-    // ---------------------------------------------------------------
-    // Panels (job description / profile)
-    // ---------------------------------------------------------------
+
     .panel{
         &__header{
             display: flex;
@@ -261,9 +254,7 @@ $blue-soft: rgba(77, 139, 255, 0.12);
         font-weight: 500;
     }
 
-    // ---------------------------------------------------------------
-    // Job description panel
-    // ---------------------------------------------------------------
+
     .job-panel{
         &__field{
             position: relative;
@@ -287,9 +278,7 @@ $blue-soft: rgba(77, 139, 255, 0.12);
         }
     }
 
-    // ---------------------------------------------------------------
-    // Profile panel
-    // ---------------------------------------------------------------
+
     .profile-panel{
         &__label{
             font-size: 0.8rem;
@@ -325,9 +314,7 @@ $blue-soft: rgba(77, 139, 255, 0.12);
         }
     }
 
-    // ---------------------------------------------------------------
-    // Upload box
-    // ---------------------------------------------------------------
+
     .upload-box{
         display: flex;
         flex-direction: column;
@@ -379,9 +366,7 @@ $blue-soft: rgba(77, 139, 255, 0.12);
         }
     }
 
-    // ---------------------------------------------------------------
-    // Notice banner
-    // ---------------------------------------------------------------
+
     .notice{
         display: flex;
         align-items: flex-start;
@@ -416,9 +401,7 @@ $blue-soft: rgba(77, 139, 255, 0.12);
         }
     }
 
-    // ---------------------------------------------------------------
-    // Footer / generate bar
-    // ---------------------------------------------------------------
+
     .generate-bar{
         display: flex;
         align-items: center;
@@ -456,6 +439,83 @@ $blue-soft: rgba(77, 139, 255, 0.12);
         &:disabled{
             opacity: 0.6;
             cursor: not-allowed;
+        }
+    }
+
+ 
+    .recent-reports{
+        width: 100%;
+        max-width: 50rem;
+        margin-top: 1.25rem;
+        padding: 0 1rem 1rem;
+
+        h2{
+            margin: 0 0 0.75rem 0;
+            font-size: 1.2rem;
+            color: $text-primary;
+        }
+
+        .reports-list{
+            display: flex;
+            gap: 0.9rem;
+            overflow-x: auto;
+            padding: 0.25rem 0 0.5rem 0;
+            margin: 0;
+            list-style: none;
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
+        }
+
+        .reports-list::-webkit-scrollbar{ display: none; }
+
+        .report-item{
+            flex: 0 0 15rem;
+            min-width: 15rem;
+            background: $card-bg;
+            border: 1px solid $card-border;
+            padding: 0.9rem;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+
+            &:hover{
+                transform: translateY(-6px);
+                border-color: $pink;
+            }
+
+            h3{
+                margin: 0;
+                font-size: 1rem;
+                color: $text-primary;
+                font-weight: 800;
+            }
+
+            .report-meta{
+                margin: 0;
+                color: $text-muted;
+                font-size: 0.85rem;
+            }
+
+            .report-card-top{
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            .score-ring{
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 3rem;
+                height: 3rem;
+                border-radius: 999px;
+                background: linear-gradient(135deg, rgba(236,19,115,0.08), rgba(139,92,246,0.06));
+                color: $pink;
+                font-weight: 800;
+                font-size: 0.95rem;
+            }
         }
     }
 }

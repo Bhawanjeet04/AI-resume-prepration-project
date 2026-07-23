@@ -1,8 +1,52 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import { Sparkles, Briefcase, User, UploadCloud, Info } from 'lucide-react'
 import "../styles/home.scss"
+import { useInterview } from '../hooks/useInterview'
+import { useNavigate } from 'react-router'
 
 const Home = () => {
+    const {loading, generateReport, reports } = useInterview()
+    const [jobDescription, setJobDescription] = useState("") 
+    const [selfDescription, setSelfDescription] = useState("") 
+    const [resumeFile, setResumeFile] = useState(null)
+    const resumeInputRef = useRef()
+
+    const navigate = useNavigate()
+
+    const handleResumeClick = () => {
+        resumeInputRef.current?.click()
+    }
+
+    const handleResumeChange = (event) => {
+        const file = event.target.files?.[0] ?? null
+        setResumeFile(file)
+    }
+
+    const handleResumeDrop = (event) => {
+        event.preventDefault()
+        const file = event.dataTransfer?.files?.[0] ?? null
+        if (file) {
+            setResumeFile(file)
+        }
+    }
+
+    const handleDragOver = (event) => {
+        event.preventDefault()
+    }
+
+    async function handleGenerateReport(){
+        const data = await generateReport({jobDescription, selfDescription, resumeFile})
+        navigate(`/interview/${data._id}`)
+    }
+
+    if(loading){
+        return(
+            <main>
+                <h1>Loading your interview plan..</h1>
+            </main>
+        )
+    }
+
   return (
     <main className='home'>
         <header className="page-header">
@@ -39,11 +83,11 @@ const Home = () => {
 
                         <div className="job-panel__field">
                             <textarea
+                                onChange={(e) => {setJobDescription(e.target.value)}}
                                 name="jobDescription"
                                 id="jobDescription"
                                 placeholder={"Paste the full job description here...\ne.g. 'Senior Frontend Engineer at Google requires proficiency in React, TypeScript, and large-scale system design...'"}
                             ></textarea>
-                            <span className="job-panel__char-count">0 / 5000 chars</span>
                         </div>
                     </div>
 
@@ -52,23 +96,25 @@ const Home = () => {
                     </div>
 
                     <div className="right panel profile-panel">
-                        <div className="panel__header">
-                            <h2 className="panel__title">
-                                <User size={16} strokeWidth={2.5} />
-                                Your Profile
-                            </h2>
-                        </div>
+                        
 
                         <div className="input-group profile-panel__field">
                             <p className='profile-panel__label'>Resume <small className='highlight'>(Use Resume and self description together for better report generation)</small></p>
 
-                            <div className="upload-box">
+                            <div
+                                className="upload-box"
+                                onClick={handleResumeClick}
+                                onDrop={handleResumeDrop}
+                                onDragOver={handleDragOver}
+                            >
                                 <input
+                                    ref={resumeInputRef}
                                     hidden
                                     type="file"
                                     name="resume"
                                     id="resume"
                                     accept='.pdf,.docx'
+                                    onChange={handleResumeChange}
                                 />
 
                                 <div className="upload-box__icon">
@@ -77,7 +123,10 @@ const Home = () => {
 
                                 <p className="upload-box__title">Click to upload or drag &amp; drop</p>
 
-                                <p className="upload-box__hint">PDF or DOCX (Max 3MB)</p>
+                                <p className="upload-box__hint">PDF (Max 3MB)</p>
+                                {resumeFile && (
+                                    <p className="upload-box__selected-file">{resumeFile.name}</p>
+                                )}
                             </div>
                         </div>
 
@@ -86,8 +135,9 @@ const Home = () => {
                         </div>
 
                         <div className="input-group profile-panel__field">
-                            <label htmlFor="selfDescription">Quick Self-Description</label>
+                            <label htmlFor="selfDescription">Self-Description</label>
                             <textarea
+                                onChange={(e)=> {setSelfDescription(e.target.value)}}
                                 name="selfDescription"
                                 id="selfDescription"
                                 placeholder="Briefly describe your experience, key skills, and years of experience if you don't have a resume handy..."
@@ -107,12 +157,34 @@ const Home = () => {
             </div>
 
             <div className="generate-bar">
-                <button className='button primary-button'>
+                <button
+                    onClick={handleGenerateReport} 
+                 className='button primary-button'>
                     <Sparkles size={16} strokeWidth={2.5} />
                     Generate My Interview Strategy
                 </button>
             </div>
         </section>
+
+        {reports.length > 0 && (
+            <section className='recent-reports'>
+                <h2>My recent Interview Plans</h2>
+                <ul className='reports-list' aria-label="Recent interview reports">
+                    {
+                        reports.map((report) => (
+                            <li key={report._id} className='report-item' onClick={() => navigate(`/interview/${report._id}`)}>
+                                <div className='report-card-top'>
+                                    <div className='score-ring'>{report.matchScore ?? '--'}%</div>
+                                </div>
+                                <h3>{report.title || 'Untitled Position'}</h3>
+                                <p className='report-meta'>Generated on {new Date(report.createdAt).toLocaleDateString()}</p>
+                            </li>
+                        ))
+                    }   
+                </ul>
+            </section>
+        )}
+
     </main>
   )
 }

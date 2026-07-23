@@ -9,6 +9,10 @@ const ai = new GoogleGenAI({
 const interviewReportJSONSchema = {
   type: "object",
   properties: {
+    title : {
+      type : "string",
+      description : "The Title of the Job for which the Interview report is generated."
+    },
     matchScore: {
       type: "number",
       description:
@@ -159,7 +163,6 @@ async function generateInterviewReport({resume,selfDescription,jobDescription}){
 
 
     const result = interviewReportSchema.parse(parsed);
-
 
     return result;
 }
