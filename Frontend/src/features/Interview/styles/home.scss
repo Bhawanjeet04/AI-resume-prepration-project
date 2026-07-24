@@ -21,7 +21,7 @@ $blue-soft: rgba(77, 139, 255, 0.12);
     align-items: center;
     justify-content: flex-start;
     gap: 1.25rem;
-    padding: 1.25rem 1.5rem;
+    padding: 1.25rem 1.25rem;
     background: $bg;
     color: $text-primary;
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -135,7 +135,7 @@ $blue-soft: rgba(77, 139, 255, 0.12);
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        gap : 2rem;
+        gap : 3rem;
         height: auto;
 
         @media (max-width: 900px){
@@ -311,6 +311,7 @@ $blue-soft: rgba(77, 139, 255, 0.12);
 
         .notice{
             margin-top: auto;
+            height: fit-content
         }
     }
 

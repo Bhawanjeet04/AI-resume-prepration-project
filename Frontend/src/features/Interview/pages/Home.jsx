@@ -130,9 +130,7 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div className="profile-panel__or">
-                            <span>OR</span>
-                        </div>
+
 
                         <div className="input-group profile-panel__field">
                             <label htmlFor="selfDescription">Self-Description</label>
@@ -140,7 +138,7 @@ const Home = () => {
                                 onChange={(e)=> {setSelfDescription(e.target.value)}}
                                 name="selfDescription"
                                 id="selfDescription"
-                                placeholder="Briefly describe your experience, key skills, and years of experience if you don't have a resume handy..."
+                                placeholder="Briefly describe your experience, key skills, Projects made and years of experience ..."
                             ></textarea>
                         </div>
 
@@ -149,7 +147,7 @@ const Home = () => {
                                 <Info size={13} strokeWidth={2.5} />
                             </span>
                             <p className="notice__text">
-                                Either a <strong>Resume</strong> or a <strong>Self Description</strong> is required to generate a personalized plan.
+                                <strong>Resume</strong> is required to generate a personalized plan.
                             </p>
                         </div>
                     </div>
